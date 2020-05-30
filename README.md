@@ -9,7 +9,7 @@ This is a multicloud multiregion Aviatrix Transit example built with Aviatrix.
 - Azure Access Account defined in Controller
 - Hong Kong region enabled for AWS (takes about 30 min to enable)
 - Sufficient EIPs available (recommend upping standard quota from 5 to 100 in all AWS regions in scope)
-- Sufficient Compute Quotas available in Azure 
+- Sufficient Compute Quotas available in Azure (i.e see below)
 
 ```
         Resource Manager, EASTASIA, DSv3 Series / 30
@@ -18,12 +18,12 @@ This is a multicloud multiregion Aviatrix Transit example built with Aviatrix.
 ```
 - terraform .12 
 
-## Architecture
+## MCNA Architecture
 <img width="964" alt="MCNA Phase I" src="https://github.com/trvsmtchll/sweatpants/blob/master/img/architecture.png">
 
 ## Getting Started
 
-This is an early iteration, future iterations will introduce modules to align with Terraform best practices additional infrastructure will be introduced.
+This is an early iteration, future iterations will incorporate modules to align with Terraform best practices additional infrastructure will be introduced.
 
 1. Modify the ```terraform.tfvars``` file to reflect your values (controller_ip, username, password, aws_access_account, azure_access_account)
 2. ```terraform init```
@@ -37,7 +37,7 @@ A significant amount of infrastructure will be deployed: networks, transit gatew
 
 This will be deployed in AWS and Azure in US East and West regions, additionally in Hong Kong.
 
-Expect it to run ~3hrs E2E. You can observe progress on the terminal and in the Aviatrix Controller.
+Expect it to run **~3hrs** E2E. You can observe progress on the terminal and in the Aviatrix Controller.
 
 If for any reason you run into a limit (EIP or Compute), correct it and continue ```terraform apply --auto-approve```
 

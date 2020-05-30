@@ -246,7 +246,7 @@ resource "aviatrix_transit_gateway" "AWS-West-Transit-GW" {
     ha_gw_size          = "c5.xlarge"
 }
 
-# AWS US East Transit and Spokes
+# AWS US East Transit
 resource "aviatrix_spoke_gateway" "East2-VPC1-GW" {
     single_az_ha        = true
     gw_name             = "East2-VPC1-GW"
@@ -296,7 +296,7 @@ resource "aviatrix_transit_gateway" "AWS-East-Transit-GW" {
     ha_gw_size          = "c5.xlarge"
 }
 
-# AWS AP East Transit and Spokes
+# AWS AP East Transit 
 resource "aviatrix_spoke_gateway" "AP-East1-VPC1-GW" {
     single_az_ha        = true
     gw_name             = "AP-East1-VPC1-GW"
@@ -342,7 +342,7 @@ resource "aviatrix_transit_gateway" "AWS-APEast1-Transit-GW" {
 }
 
 
-# Azure Transit and Spokes
+# Azure US West Transit 
 resource "aviatrix_spoke_gateway" "West-VNET1-GW" {
     single_az_ha        = true
     gw_name             = "West-VNET1-GW"
@@ -357,6 +357,7 @@ resource "aviatrix_spoke_gateway" "West-VNET1-GW" {
     ha_eip              = ""
     ha_subnet           = "10.115.32.0/20"
     ha_gw_size          = "Standard_B1ms"
+    depends_on          = [aviatrix_transit_gateway.Azure-West-Transit-GW]
 }
 
 resource "aviatrix_spoke_gateway" "West-VNET2-GW" {
@@ -373,6 +374,7 @@ resource "aviatrix_spoke_gateway" "West-VNET2-GW" {
     ha_eip              = ""
     ha_subnet           = "10.116.32.0/20"
     ha_gw_size          = "Standard_B1ms"
+    depends_on          = [aviatrix_transit_gateway.Azure-West-Transit-GW]
 }
 
 resource "aviatrix_transit_gateway" "Azure-West-Transit-GW" {
@@ -391,6 +393,7 @@ resource "aviatrix_transit_gateway" "Azure-West-Transit-GW" {
     ha_gw_size          = "Standard_B2ms"
 }
 
+# Azure East Transit
 resource "aviatrix_spoke_gateway" "East-VNET1" {
     single_az_ha        = true
     gw_name             = "East-VNET1"
@@ -435,6 +438,7 @@ resource "aviatrix_transit_gateway" "Azure-East-Transit" {
     ha_gw_size          = "Standard_D3_v2"
 }
 
+# Azure AP (Hong Kong) Transit
 resource "aviatrix_spoke_gateway" "APEast-VNET1" {
     single_az_ha        = true
     gw_name             = "APEast-VNET1"
@@ -450,6 +454,7 @@ resource "aviatrix_spoke_gateway" "APEast-VNET1" {
     ha_eip              = ""
     ha_subnet           = "10.125.64.64/26"
     ha_gw_size          = "Standard_D3_v2"
+    depends_on          = [aviatrix_transit_gateway.Azure-APEast-Transit-GW]
 }
 
 resource "aviatrix_spoke_gateway" "APEast-VNET2" {
@@ -467,6 +472,7 @@ resource "aviatrix_spoke_gateway" "APEast-VNET2" {
     ha_eip              = ""
     ha_subnet           = "10.126.64.64/26"
     ha_gw_size          = "Standard_DS3_v2"
+    depends_on          = [aviatrix_transit_gateway.Azure-APEast-Transit-GW]
 }
 
 resource "aviatrix_transit_gateway" "Azure-APEast-Transit-GW" {
